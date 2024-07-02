@@ -45,7 +45,7 @@ The Zomato Analysis project involves several key steps:
     - The distribution of the cost for two people is analyzed.
   
 ## Download dataset
-    - https://drive.google.com/file/d/1O9HKIWj-4G2J1D_5VbAFtfLoxN040ZBo/view?usp=sharing
+https://drive.google.com/file/d/1O9HKIWj-4G2J1D_5VbAFtfLoxN040ZBo/view?usp=sharing
 
 ## Code Breakdown
 

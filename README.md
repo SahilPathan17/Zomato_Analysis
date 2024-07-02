@@ -2,6 +2,7 @@
 
 This project aims to analyze data from the Zomato restaurant database to uncover patterns and insights about various restaurants. The analysis involves cleaning and processing the data, handling missing values, and performing exploratory data analysis (EDA).
 
+<p>
 Project Overview
 The Zomato Analysis project involves several key steps:
 
@@ -136,3 +137,5 @@ This analysis of the Zomato dataset provides insights into how various factors l
 Future Work
 Further analysis can be conducted to understand the impact of other factors such as restaurant ambiance and customer reviews.
 Machine learning models can be developed to predict restaurant ratings based on the features available in the dataset.
+
+</p>

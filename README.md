@@ -3,47 +3,51 @@
 This project aims to analyze data from the Zomato restaurant database to uncover patterns and insights about various restaurants. The analysis involves cleaning and processing the data, handling missing values, and performing exploratory data analysis (EDA).
 
 <p>
-Project Overview
+
+---
+
+## Project Overview
+
 The Zomato Analysis project involves several key steps:
 
-Data Loading and Initial Exploration:
+1. **Data Loading and Initial Exploration**:
+    - The dataset is loaded using `pandas` and the initial structure and columns are examined to understand its content.
+    - Basic statistics such as shape and count of missing values are computed to assess the data quality.
 
-The dataset is loaded using pandas and the initial structure and columns are examined to understand its content.
-Basic statistics such as shape and count of missing values are computed to assess the data quality.
-Data Cleaning:
+2. **Data Cleaning**:
+    - Columns with missing values are identified and the percentage of missing values is calculated.
+    - The `rate` column is cleaned by removing unwanted characters and converting it to a numeric type.
+    - Rows with missing ratings are removed to ensure accurate analysis.
 
-Columns with missing values are identified and the percentage of missing values is calculated.
-The rate column is cleaned by removing unwanted characters and converting it to a numeric type.
-Rows with missing ratings are removed to ensure accurate analysis.
-Calculating Average Ratings:
+3. **Calculating Average Ratings**:
+    - The average rating for each restaurant is calculated using a pivot table.
+    - Restaurants are then sorted by their average rating to identify the top-rated establishments.
 
-The average rating for each restaurant is calculated using a pivot table.
-Restaurants are then sorted by their average rating to identify the top-rated establishments.
-Visualizing Rating Distribution:
+4. **Visualizing Rating Distribution**:
+    - A distribution plot is created to visualize the spread of ratings across all restaurants.
+    - Statistical tests are performed to check the normality of the rating distribution.
 
-A distribution plot is created to visualize the spread of ratings across all restaurants.
-Statistical tests are performed to check the normality of the rating distribution.
-Analyzing Restaurant Chains:
+5. **Analyzing Restaurant Chains**:
+    - The most common restaurant chains are identified and visualized using a bar plot.
+    - The acceptance of online orders and table bookings by restaurants is analyzed using pie charts.
 
-The most common restaurant chains are identified and visualized using a bar plot.
-The acceptance of online orders and table bookings by restaurants is analyzed using pie charts.
-Restaurant Type Analysis:
+6. **Restaurant Type Analysis**:
+    - The distribution of different types of restaurants is analyzed and visualized.
+    - The average number of votes received by restaurants is calculated and visualized.
 
-The distribution of different types of restaurants is analyzed and visualized.
-The average number of votes received by restaurants is calculated and visualized.
-Top and Worst Restaurants:
+7. **Top and Worst Restaurants**:
+    - The highest-rated restaurants based on the number of votes are identified and visualized.
+    - Similarly, the worst-rated restaurants with a significant number of votes are also identified and visualized.
 
-The highest-rated restaurants based on the number of votes are identified and visualized.
-Similarly, the worst-rated restaurants with a significant number of votes are also identified and visualized.
-Location and Cuisine Analysis:
+8. **Location and Cuisine Analysis**:
+    - The distribution of restaurants across different locations is visualized.
+    - The top 10 cuisines offered by restaurants are identified and visualized.
+    - The distribution of the cost for two people is analyzed.
 
-The distribution of restaurants across different locations is visualized.
-The top 10 cuisines offered by restaurants are identified and visualized.
-The distribution of the cost for two people is analyzed.
-Code Breakdown
-Data Loading and Initial Cleaning
-python
-Copy code
+## Code Breakdown
+
+### Data Loading and Initial Cleaning
+```python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -52,24 +56,27 @@ import warnings
 warnings.filterwarnings('ignore')
 
 data = pd.read_csv("/content/drive/MyDrive/Python_Session/zomato (1).csv")
-Handling Missing Values
-python
-Copy code
+```
+
+### Handling Missing Values
+```python
 feature_na = [i for i in data.columns if data[i].isnull().sum() > 0]
 for i in feature_na:
     print(f"{i} has {np.round((data[i].isnull().sum()/len(data[i])*100), 4)}% null values")
-Data Transformation
-python
-Copy code
+```
+
+### Data Transformation
+```python
 data.dropna(subset=['rate'], axis=0, inplace=True)
 def split(x):
     return x.split('/')[0].strip()
 data['rate'] = data['rate'].apply(split)
 data['rate'].replace(['NEW', '-'], 0, inplace=True)
 data['rate'] = data['rate'].astype(float)
-Exploratory Data Analysis
-python
-Copy code
+```
+
+### Exploratory Data Analysis
+```python
 # Average rating calculation
 rating = pd.pivot_table(data, index='name', values='rate').sort_values('rate', ascending=False)
 plt.figure(figsize=(15,8))
@@ -131,11 +138,17 @@ plt.show()
 
 # Cost for two people analysis
 data.dropna(axis=0, subset=['approx_cost(for two people)'], inplace=True)
-Conclusion
+```
+
+## Conclusion
+
 This analysis of the Zomato dataset provides insights into how various factors like ratings, votes, restaurant types, locations, and cuisines impact restaurant popularity and performance. The visualizations help identify trends and patterns that can be useful for restaurant owners and customers.
 
-Future Work
-Further analysis can be conducted to understand the impact of other factors such as restaurant ambiance and customer reviews.
-Machine learning models can be developed to predict restaurant ratings based on the features available in the dataset.
+## Future Work
+
+- Further analysis can be conducted to understand the impact of other factors such as restaurant ambiance and customer reviews.
+- Machine learning models can be developed to predict restaurant ratings based on the features available in the dataset.
+
+---
 
 </p>
